@@ -1,12 +1,15 @@
-<script>
 
+<script>
+    // creating websocket call to localhost 8080
     const ws = new WebSocket('ws://localhost:8080')
     console.log('testing: '+ ws)
-
+    
+    // listening for open, and on open send message to server
     ws.onopen = (event)=>{
         console.log(event)
+        ws.send('I recieved your message!')
     } 
-
+    // listening for messages from server
     ws.onmessage = (message)=>{
         console.log("message: " + message.data)
     }
