@@ -3,4 +3,12 @@
     const ws = new WebSocket('ws://localhost:8080')
     console.log('testing: '+ ws)
 
+    ws.onopen = (event)=>{
+        console.log(event)
+    } 
+
+    ws.onmessage = (message)=>{
+        console.log("message: " + message.data)
+    }
+    
 </script>
