@@ -1,3 +1,6 @@
+const express = require('express')
+const app = express();
+
 // const fs = require('fs')
 // const userName = 'Mohammed';
 
@@ -36,12 +39,11 @@
 
 // express
 
-const express = require('express')
-const app = express;
+
 
 // middleware function take a callback with three arguments
 app.use((req, res, next) => {
-
+    res.send('<form method="POST"><input type="text" name="username"><button>Create User</button></input></form>')
 })
 
 app.listen(5000);
