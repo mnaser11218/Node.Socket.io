@@ -9,12 +9,13 @@ socket.on('serverToClient', (data)=>{
 })
 
 // client sends message to server that it recieved message
-socket.emit('clientToServer', 'Hello Server')
 
+socket.emit('clientToServer', 'Hello Server')
 
 // if button clicked change background color
 
 switchButton.addEventListener('click', ()=>{
+
     console.log("button clicked")
     if(document.body.style.background === "darkgray"){
         document.body.style.background = "white"
