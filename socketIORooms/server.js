@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const port = 3000;
 const server = app.listen(port)
+let clientNo = 0;
 
 const { Server } = require('socket.io');
 const io = new Server(server, {
@@ -12,10 +13,13 @@ const io = new Server(server, {
 });
 
 const connected = (socket)=>{
-    console.log("testing")
-    socket.on('clientToServer', (data)=>{
-        console.log("hello world")
-    })
+    clientNo++;
+    socket.join(Math.round(clientNo/2))
+    socket.emit('serverMsg', Math.round(clientNo/2))
 
+    socket.on('buttonPressed', (clientRoom)=>{
+        io.to(clientRoom).emit('switchFromServer')
+    })
+   
 }
 io.on('connection', connected)
