@@ -8,13 +8,14 @@ socket.on('serverToClient', (data)=>{
     alert(data)
 })
 
+// here, the room number sent from server, then we update the client room variable with the proper room number
 socket.on('serverMsg', (data)=>{
     console.log("i should be in room: " + data)
     clientRoom = data;
 })
 
-// client sends message to server that it recieved message
 
+// here the server sent an io.to to everyone in the room, so everyone in the room's background will update
 socket.on('switchFromServer', ()=>{
     console.log("insidw switch")
      if(document.body.style.background === "darkgray"){
@@ -24,8 +25,7 @@ socket.on('switchFromServer', ()=>{
     }
 })
 
-// if button clicked change background color
-
+// if button clicked, send the client room to server
 switchButton.addEventListener('click', ()=>{
     socket.emit('buttonPressed', clientRoom )
 })
